@@ -17,7 +17,6 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
     { id: 'products', labelKey: 'nav.products' },
     { id: 'export', labelKey: 'nav.export' },
     { id: 'careers', labelKey: 'nav.careers' },
-    { id: 'news', labelKey: 'nav.news' },
     { id: 'contact', labelKey: 'nav.contact' },
   ];
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight, Award, Users, Package, TrendingUp, Calendar } from 'lucide-react';
-import { supabase, Product, News } from '../lib/supabase';
+import { ArrowRight, Award, Users, Package, TrendingUp } from 'lucide-react';
+import { supabase, Product } from '../lib/supabase';
 
 interface HomeProps {
   onNavigate: (page: string) => void;
@@ -8,7 +8,6 @@ interface HomeProps {
 
 export default function Home({ onNavigate }: HomeProps) {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
-  const [latestNews, setLatestNews] = useState<News[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,23 +16,14 @@ export default function Home({ onNavigate }: HomeProps) {
 
   const fetchData = async () => {
     try {
-      const [productsResponse, newsResponse] = await Promise.all([
-        supabase
-          .from('products')
-          .select('*')
-          .eq('is_featured', true)
-          .eq('is_active', true)
-          .limit(3),
-        supabase
-          .from('news')
-          .select('*')
-          .eq('is_published', true)
-          .order('published_date', { ascending: false })
-          .limit(3),
-      ]);
+      const productsResponse = await supabase
+        .from('products')
+        .select('*')
+        .eq('is_featured', true)
+        .eq('is_active', true)
+        .limit(3);
 
       if (productsResponse.data) setFeaturedProducts(productsResponse.data);
-      if (newsResponse.data) setLatestNews(newsResponse.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -44,7 +34,16 @@ export default function Home({ onNavigate }: HomeProps) {
   return (
     <div className="min-h-screen">
       <section className="relative bg-gradient-to-br from-teal-700 via-teal-600 to-emerald-600 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE2YzAtNi42MjcgNS4zNzMtMTIgMTItMTJzMTIgNS4zNzMgMTIgMTItNS4zNzMgMTItMTIgMTItMTItNS4zNzMtMTItMTJ6TTAgNDhjMC02LjYyNyA1LjM3My0xMiAxMi0xMnMxMiA1LjM3MyAxMiAxMi01LjM3MyAxMi0xMiAxMlMwIDU0LjYyNyAwIDQ4eiIvPjwvZz48L2c+PC9zdmc+')] opacity-30"></div>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        >
+          <source src="/herosection.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-br from-teal-900/70 via-teal-800/60 to-emerald-900/70"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative z-10">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
@@ -137,60 +136,6 @@ export default function Home({ onNavigate }: HomeProps) {
               className="px-8 py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-700 transition"
             >
               View All Products
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Latest News & Updates</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Stay informed about our latest developments, achievements, and healthcare initiatives
-            </p>
-          </div>
-
-          {loading ? (
-            <div className="text-center py-12">
-              <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-teal-600 border-r-transparent"></div>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-              {latestNews.map((news) => (
-                <div key={news.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-                  <div className="h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                    <Calendar className="h-16 w-16 text-gray-500" />
-                  </div>
-                  <div className="p-6">
-                    <p className="text-sm text-teal-600 font-medium mb-2">
-                      {new Date(news.published_date).toLocaleDateString('en-US', {
-                        month: 'long',
-                        day: 'numeric',
-                        year: 'numeric',
-                      })}
-                    </p>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">{news.title}</h3>
-                    <p className="text-gray-600 mb-4 line-clamp-3">{news.excerpt}</p>
-                    <button
-                      onClick={() => onNavigate('news')}
-                      className="text-teal-600 font-semibold hover:text-teal-700 flex items-center group"
-                    >
-                      Read More
-                      <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          <div className="text-center">
-            <button
-              onClick={() => onNavigate('news')}
-              className="px-8 py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-700 transition"
-            >
-              View All News
             </button>
           </div>
         </div>

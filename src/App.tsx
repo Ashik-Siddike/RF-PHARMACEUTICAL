@@ -5,7 +5,6 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Products from './pages/Products';
 import Careers from './pages/Careers';
-import News from './pages/News';
 import Contact from './pages/Contact';
 import ExportMarket from './pages/ExportMarket';
 import AdminLogin from './pages/admin/AdminLogin';
@@ -62,8 +61,6 @@ function AppContent() {
         return <ExportMarket />;
       case 'careers':
         return <Careers />;
-      case 'news':
-        return <News />;
       case 'contact':
         return <Contact />;
       case 'admin-dashboard':

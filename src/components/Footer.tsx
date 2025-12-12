@@ -83,7 +83,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div>
             <h4 className="text-lg font-semibold mb-4 text-emerald-400">{t('footer.quicklinks')}</h4>
             <ul className="space-y-2 text-sm">
-              {['home', 'about', 'products', 'export', 'rd', 'careers', 'news', 'contact'].map((page) => (
+              {['home', 'about', 'products', 'export', 'rd', 'careers', 'contact'].map((page) => (
                 <li key={page}>
                   <button
                     onClick={() => onNavigate(page)}
