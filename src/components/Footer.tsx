@@ -101,15 +101,15 @@ export default function Footer({ onNavigate }: FooterProps) {
             <ul className="space-y-3 text-sm text-gray-300">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-2 mt-0.5 text-emerald-400 flex-shrink-0" />
-                <span>123 Pharmaceutical Avenue, Dhaka 1000, Bangladesh</span>
+                <span>Jhumjhumpur, Jashore 7400, Khulna, Bangladesh</span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-2 text-emerald-400 flex-shrink-0" />
-                <a href="tel:+880123456789" className="hover:text-emerald-400 transition">+880 123 456 789</a>
+                <a href="tel:01580796575" className="hover:text-emerald-400 transition">01580796575</a>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-2 text-emerald-400 flex-shrink-0" />
-                <a href="mailto:info@rfpharma.com" className="hover:text-emerald-400 transition">info@rfpharma.com</a>
+                <a href="mailto:contact@rfpharmaceutical.com" className="hover:text-emerald-400 transition">contact@rfpharmaceutical.com</a>
               </li>
             </ul>
           </div>

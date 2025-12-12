@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, Phone, Mail, Globe } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 interface HeaderProps {
@@ -27,47 +27,23 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
-      <div className="bg-gradient-to-r from-teal-700 to-teal-600 text-white py-2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center text-sm">
-            <div className="flex items-center space-x-4">
-              <a href="tel:+880123456789" className="flex items-center hover:text-teal-100 transition">
-                <Phone className="h-4 w-4 mr-1" />
-                <span className="hidden sm:inline">+880 123 456 789</span>
-              </a>
-              <a href="mailto:info@rfpharma.com" className="flex items-center hover:text-teal-100 transition">
-                <Mail className="h-4 w-4 mr-1" />
-                <span className="hidden sm:inline">info@rfpharma.com</span>
-              </a>
-            </div>
-            <button
-              onClick={toggleLanguage}
-              className="flex items-center hover:text-teal-100 transition px-3 py-1 rounded hover:bg-white hover:bg-opacity-10"
-            >
-              <Globe className="h-4 w-4 mr-1" />
-              <span className="font-semibold">{language === 'en' ? 'EN' : 'বাং'}</span>
-              <span className="mx-1">|</span>
-              <span className="opacity-70">{language === 'en' ? 'বাং' : 'EN'}</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center cursor-pointer" onClick={() => onNavigate('home')}>
             <div className="flex items-center">
-              <div className="w-12 h-12 bg-gradient-to-br from-teal-600 to-emerald-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">RF</span>
-              </div>
+              <img
+                src="/whatsapp_image_2025-12-08_at_14.29.09_efeef338.jpg"
+                alt="RF Pharmaceutical Logo"
+                className="h-12 w-12 object-contain"
+              />
               <div className="ml-3">
-                <h1 className="text-xl font-bold text-teal-800">RF PHARMACEUTICAL</h1>
+                <h1 className="text-xl font-bold text-teal-800">RF PHARMACEUTICAL LTD</h1>
                 <p className="text-xs text-emerald-600 font-medium">{t('header.tagline')}</p>
               </div>
             </div>
           </div>
 
-          <nav className="hidden lg:flex space-x-8">
+          <nav className="hidden lg:flex space-x-8 items-center">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -81,6 +57,15 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
                 {t(item.labelKey)}
               </button>
             ))}
+            <button
+              onClick={toggleLanguage}
+              className="flex items-center text-teal-700 hover:text-teal-600 transition px-3 py-1 rounded hover:bg-teal-50"
+            >
+              <Globe className="h-4 w-4 mr-1" />
+              <span className="font-semibold">{language === 'en' ? 'EN' : 'বাং'}</span>
+              <span className="mx-1">|</span>
+              <span className="opacity-70">{language === 'en' ? 'বাং' : 'EN'}</span>
+            </button>
           </nav>
 
           <button
@@ -111,6 +96,15 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
                 {t(item.labelKey)}
               </button>
             ))}
+            <button
+              onClick={toggleLanguage}
+              className="flex items-center justify-center w-full text-teal-700 hover:text-teal-600 transition px-4 py-2 rounded hover:bg-teal-50"
+            >
+              <Globe className="h-4 w-4 mr-2" />
+              <span className="font-semibold">{language === 'en' ? 'EN' : 'বাং'}</span>
+              <span className="mx-1">|</span>
+              <span className="opacity-70">{language === 'en' ? 'বাং' : 'EN'}</span>
+            </button>
           </nav>
         </div>
       )}

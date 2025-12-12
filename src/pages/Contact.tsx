@@ -57,17 +57,17 @@ export default function Contact() {
               {
                 icon: MapPin,
                 title: 'Visit Us',
-                lines: ['123 Pharmaceutical Avenue', 'Dhaka 1000', 'Bangladesh'],
+                lines: ['Jhumjhumpur', 'Jashore 7400, Khulna', 'Bangladesh'],
               },
               {
                 icon: Phone,
                 title: 'Call Us',
-                lines: ['+880 123 456 789', '+880 987 654 321', 'Mon-Fri: 9 AM - 6 PM'],
+                lines: ['01580796575', 'Mon-Fri: 9 AM - 6 PM'],
               },
               {
                 icon: Mail,
                 title: 'Email Us',
-                lines: ['info@rfpharma.com', 'support@rfpharma.com', 'careers@rfpharma.com'],
+                lines: ['contact@rfpharmaceutical.com'],
               },
             ].map((contact, index) => (
               <div key={index} className="bg-gradient-to-br from-teal-50 to-emerald-50 p-8 rounded-2xl text-center hover:shadow-lg transition-shadow">
@@ -117,7 +117,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
-                      placeholder="john@example.com"
+                      placeholder="your@email.com"
                     />
                   </div>
                   <div>
@@ -131,7 +131,7 @@ export default function Contact() {
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
-                      placeholder="+880 123 456 789"
+                      placeholder="01580796575"
                     />
                   </div>
                 </div>
@@ -207,17 +207,17 @@ export default function Contact() {
                 {[
                   {
                     title: 'Head Office',
-                    address: '123 Pharmaceutical Avenue',
-                    city: 'Dhaka 1000, Bangladesh',
-                    phone: '+880 123 456 789',
-                    email: 'info@rfpharma.com',
+                    address: 'Jhumjhumpur',
+                    city: 'Jashore 7400, Khulna, Bangladesh',
+                    phone: '01580796575',
+                    email: 'contact@rfpharmaceutical.com',
                   },
                   {
                     title: 'Manufacturing Facility',
-                    address: '456 Industrial Zone',
-                    city: 'Gazipur 1700, Bangladesh',
-                    phone: '+880 987 654 321',
-                    email: 'plant@rfpharma.com',
+                    address: 'Jhumjhumpur',
+                    city: 'Jashore 7400, Khulna, Bangladesh',
+                    phone: '01580796575',
+                    email: 'contact@rfpharmaceutical.com',
                   },
                 ].map((office, index) => (
                   <div key={index} className="bg-gradient-to-br from-gray-50 to-teal-50 p-6 rounded-xl">
